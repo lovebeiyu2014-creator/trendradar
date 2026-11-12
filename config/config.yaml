@@ -137,6 +137,21 @@ rss:
       url: "https://simonwillison.net/atom/everything/"
       max_age_days: 7
 
+   - id: "jobs-indeed"
+      name: "[3] Indeed 上海 CSR/ESG"
+      url: "https://www.google.com/alerts/feeds/16804644386676228673/4800210569831654766"
+      max_age_days: 7
+
+    - id: "jobs-linkedin"
+      name: "[3] LinkedIn 上海 CSR/ESG"
+      url: "https://www.google.com/alerts/feeds/16804644386676228673/12139139222210581150"
+      max_age_days: 7
+
+    - id: "csrcare"
+      name: "[2] 合规网 合规头条"
+      url: "https://www.google.com/alerts/feeds/16804644386676228673/17808206193327102677"
+      max_age_days: 7
+
     # 自定义源示例
     # - id: "custom-feed"
     #   name: "自定义源"
@@ -251,6 +266,9 @@ display:
       - reddit-popular
       - nga-qingfeng
       - nga-wangshi
+      - jobs-indeed
+      - jobs-linkedin
+      - csrcare
     max_items: 5
 
 # ===============================================================
