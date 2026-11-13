@@ -64,6 +64,7 @@ schedule:
 platforms:
   enabled: true                         # 是否启用热榜平台抓取（true=启用, false=关闭）
   api_url: ""                            # 热榜数据 API 地址（留空使用默认地址）
+  api_url: "https://newsnow.ceda.is/api/s"  # 热榜数据 API 地址（留空使用默认地址）
                                         # 如果你自行部署了 newsnow，填入你的地址，如: https://your-domain.com/api/s
   sources:
     - id: "zhihu"
@@ -74,6 +75,7 @@ platforms:
 
     - id: "hackernews"
       name: "[7] Hacker News"
+
 
 
 
@@ -101,7 +103,7 @@ rss:
   # - 不配置：使用全局 freshness_filter.max_age_days（默认 3 天）
   # - 正整数：覆盖全局设置，只推送此天数内的文章
   # - 0：禁用此频道的新鲜度过滤，推送所有文章
- feeds:
+  feeds:
     - id: "clw"
       name: "[1] China Labor Watch"
       url: "https://chinalaborwatch.org/feed/"
@@ -137,7 +139,7 @@ rss:
       url: "https://simonwillison.net/atom/everything/"
       max_age_days: 7
 
-   - id: "jobs-indeed"
+    - id: "jobs-indeed"
       name: "[3] Indeed 上海 CSR/ESG"
       url: "https://www.google.com/alerts/feeds/16804644386676228673/4800210569831654766"
       max_age_days: 7
@@ -158,6 +160,7 @@ rss:
     #   url: "https://example.com/feed.xml"
     #   enabled: false
     #   max_age_days: 0               # 示例：禁用过滤，推送所有文章
+
     - id: "reddit-popular"
       name: "[8] Reddit Hot"
       url: "https://www.reddit.com/r/popular/hot/.rss"
@@ -192,14 +195,14 @@ report:
 
   rank_threshold: 5                   # 排名高亮阈值（影响展示强调，不改变抓取范围）
 
-  max_news_per_keyword: 0             # 每个关键词/标签最大显示数量（0=不限制，仅影响展示裁剪）
+  max_news_per_keyword: 5             # 每个关键词/标签最大显示数量（0=不限制，仅影响展示裁剪）
 
 
 # ===============================================================
 # 4.5 筛选策略
 # ===============================================================
 filter:
-  method: "keyword"                     # 筛选方式（二选一）
+  method: "ai"                         # 筛选方式（二选一）
                                        # keyword = 关键词匹配，不调用 AI，不消耗 token，但规则固定
                                        #           词组定义在 config/frequency_words.txt
                                        # ai = AI 智能分类，更灵活但每次运行消耗 token
@@ -247,12 +250,11 @@ ai_filter:
 # ===============================================================
 display:
   region_order:
-    - hotlist
     - rss
     - standalone
 
   regions:
-    hotlist: true
+    hotlist: false
     new_items: false
     rss: true
     standalone: true
@@ -463,7 +465,7 @@ ai_analysis:
 # 对推送标题进行翻译，不包含 AI 分析的内容
 # ===============================================================
 ai_translation:
-  enabled: true                     # 是否启用翻译功能（true=启用, false=关闭）
+  enabled: false                     # 是否启用翻译功能（true=启用, false=关闭）
   language: "中文"                   # 翻译目标语言（如 "English", "Korean", "法语"）
   prompt_file: "ai_translation_prompt.txt"   # 提示词文件（相对于 config 目录）
 
@@ -481,7 +483,7 @@ ai_translation:
 # 11. 高级设置（一般无需修改）
 # ===============================================================
 advanced:
-  debug: false                        # 调试模式（true=开启详细日志, false=正常模式）
+  debug: true                         # 调试模式（true=开启详细日志, false=正常模式）
 
   # 版本检查
   version_check_url: "https://raw.githubusercontent.com/sansan0/TrendRadar/refs/heads/master/version"
